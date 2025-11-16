@@ -14,7 +14,6 @@ import com.rls.LinkDrop.service.AppService;
 
 
 @RestController
-@CrossOrigin (origins = "*", allowedHeaders = "*")
 public class AppController {
 	
 	@Autowired
