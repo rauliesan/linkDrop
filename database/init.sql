@@ -1,21 +1,22 @@
--- Estructura de tabla para la tabla `app`
---
+-- Primero, creamos un tipo ENUM personalizado para las categorías
+CREATE TYPE app_category AS ENUM ('DESIGN', 'DEVELOPMENT', 'ENTERTAINMENT', 'GAME', 'MUSIC', 'PRODUCTIVITY');
 
-CREATE TABLE `app` (
-  `id` bigint(20) NOT NULL,
-  `category` enum('DESIGN','DEVELOPMENT','ENTERTAINMENT','GAME','MUSIC','PRODUCTIVITY') NOT NULL,
-  `download_url` text NOT NULL,
-  `image_url` text NOT NULL,
-  `name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+-- Estructura de tabla para la tabla app
+-- Usamos BIGSERIAL para un ID auto-incremental de 64 bits y lo marcamos como PRIMARY KEY.
+CREATE TABLE app (
+  id BIGSERIAL PRIMARY KEY,
+  category app_category NOT NULL,
+  download_url TEXT NOT NULL,
+  image_url TEXT NOT NULL,
+  name VARCHAR(255) NOT NULL
+);
 
---
--- Volcado de datos para la tabla `app`
---
-
-INSERT INTO `app` (`id`, `category`, `download_url`, `image_url`, `name`) VALUES
+-- Volcado de datos para la tabla app
+-- La sintaxis de INSERT es la misma, solo quitamos las comillas invertidas del nombre de la tabla.
+INSERT INTO app (id, category, download_url, image_url, name) VALUES
 (1, 'DEVELOPMENT', 'https://code.visualstudio.com/download', 'https://cdn.jsdelivr.net/npm/simple-icons/icons/visualstudiocode.svg', 'Visual Studio Code'),
 (2, 'DEVELOPMENT', 'https://www.docker.com/products/docker-desktop/', 'https://cdn.jsdelivr.net/npm/simple-icons/icons/docker.svg', 'Docker Desktop'),
+-- ... (copia y pega el resto de tus sentencias INSERT aquí, son compatibles)
 (3, 'DEVELOPMENT', 'https://www.postman.com/downloads/', 'https://cdn.jsdelivr.net/npm/simple-icons/icons/postman.svg', 'Postman'),
 (4, 'DEVELOPMENT', 'https://desktop.github.com/', 'https://cdn.jsdelivr.net/npm/simple-icons/icons/github.svg', 'GitHub Desktop'),
 (5, 'DEVELOPMENT', 'https://www.jetbrains.com/idea/download/', 'https://cdn.jsdelivr.net/npm/simple-icons/icons/intellijidea.svg', 'IntelliJ IDEA'),
@@ -33,7 +34,7 @@ INSERT INTO `app` (`id`, `category`, `download_url`, `image_url`, `name`) VALUES
 (17, 'MUSIC', 'https://www.spotify.com/download/', 'https://cdn.jsdelivr.net/npm/simple-icons/icons/spotify.svg', 'Spotify'),
 (18, 'MUSIC', 'https://www.apple.com/apple-music/', 'https://cdn.jsdelivr.net/npm/simple-icons/icons/applemusic.svg', 'Apple Music'),
 (19, 'MUSIC', 'https://www.videolan.org/vlc/', 'https://cdn.jsdelivr.net/npm/simple-icons/icons/vlcmediaplayer.svg', 'VLC Media Player'),
-(20, 'ENTERTAINMENT', 'https://www.netflix.com/', 'https://cdn.jsdelivr.net/npm/simple-icons/icons/netflix.svg', 'Netflix'),
+(20, 'ENTERTAINMENT', 'https://www.netflix.com/', 'https://cdn.jsdelivr.net/npm/simple-icons/icons/netflix.svg', 'Netflix');
 (21, 'ENTERTAINMENT', 'https://www.max.com/', 'https://cdn.jsdelivr.net/npm/simple-icons/icons/hbo.svg', 'HBO'),
 (22, 'ENTERTAINMENT', 'https://obsproject.com/download', 'https://cdn.jsdelivr.net/npm/simple-icons/icons/obsstudio.svg', 'OBS Studio'),
 (23, 'GAME', 'https://store.steampowered.com/about/', 'https://cdn.jsdelivr.net/npm/simple-icons/icons/steam.svg', 'Steam'),
